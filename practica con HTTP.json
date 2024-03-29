@@ -1,0 +1,768 @@
+[
+    {
+        "id": "abf616e3a4e3b56b",
+        "type": "tab",
+        "label": "Http",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "9872b7ee130b9a81",
+        "type": "http request",
+        "z": "abf616e3a4e3b56b",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:1880/servidor/{{{temp}}}/78.2?par1=pais&par2=ciudad",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 590,
+        "y": 140,
+        "wires": [
+            [
+                "2595a44d7cf31348",
+                "aee0853c1afd5379"
+            ]
+        ]
+    },
+    {
+        "id": "2595a44d7cf31348",
+        "type": "debug",
+        "z": "abf616e3a4e3b56b",
+        "name": "Servidor",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "5e823417d19fc622",
+        "type": "http in",
+        "z": "abf616e3a4e3b56b",
+        "name": "",
+        "url": "/servidor/:temp/:hum",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 540,
+        "wires": [
+            [
+                "4f64b13ffea9c740",
+                "acbfe310b9268e3d",
+                "bd122fb9acf6c522",
+                "772c332a8a2046b0"
+            ]
+        ]
+    },
+    {
+        "id": "b5b55011165339fc",
+        "type": "http response",
+        "z": "abf616e3a4e3b56b",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 820,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "4f64b13ffea9c740",
+        "type": "debug",
+        "z": "abf616e3a4e3b56b",
+        "name": "get server",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "acbfe310b9268e3d",
+        "type": "change",
+        "z": "abf616e3a4e3b56b",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "req.params.temp",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 540,
+        "wires": [
+            [
+                "0c9396be529e4e48"
+            ]
+        ]
+    },
+    {
+        "id": "bd122fb9acf6c522",
+        "type": "change",
+        "z": "abf616e3a4e3b56b",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "req.params.hum",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 600,
+        "wires": [
+            [
+                "eb377a120fe30b3e"
+            ]
+        ]
+    },
+    {
+        "id": "cf445ab32487aeb2",
+        "type": "http response",
+        "z": "abf616e3a4e3b56b",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 800,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "0c9396be529e4e48",
+        "type": "ui_gauge",
+        "z": "abf616e3a4e3b56b",
+        "name": "",
+        "group": "4f4fba6d2ec91bb5",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura",
+        "label": "units",
+        "format": "{{value | number:2}}",
+        "min": 0,
+        "max": 10,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 710,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "eb377a120fe30b3e",
+        "type": "ui_gauge",
+        "z": "abf616e3a4e3b56b",
+        "name": "",
+        "group": "4f4fba6d2ec91bb5",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "humedad",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 10,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 760,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "8de6ce53017fb579",
+        "type": "http in",
+        "z": "abf616e3a4e3b56b",
+        "name": "",
+        "url": "/temperatura",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 230,
+        "y": 1400,
+        "wires": [
+            [
+                "7202a64bf64f5ce5"
+            ]
+        ]
+    },
+    {
+        "id": "7202a64bf64f5ce5",
+        "type": "template",
+        "z": "abf616e3a4e3b56b",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"temperatura\":35}",
+        "output": "str",
+        "x": 440,
+        "y": 1400,
+        "wires": [
+            [
+                "f82ed6238c02dc3c"
+            ]
+        ]
+    },
+    {
+        "id": "f82ed6238c02dc3c",
+        "type": "change",
+        "z": "abf616e3a4e3b56b",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.content-type",
+                "pt": "msg",
+                "to": "application/json",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 620,
+        "y": 1400,
+        "wires": [
+            [
+                "255eac551005a025",
+                "db87fe7af18d43e5"
+            ]
+        ]
+    },
+    {
+        "id": "255eac551005a025",
+        "type": "http response",
+        "z": "abf616e3a4e3b56b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 670,
+        "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "06cd80764f4786fc",
+        "type": "http response",
+        "z": "abf616e3a4e3b56b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 230,
+        "y": 1560,
+        "wires": []
+    },
+    {
+        "id": "db87fe7af18d43e5",
+        "type": "debug",
+        "z": "abf616e3a4e3b56b",
+        "name": "debug 31",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 1560,
+        "wires": []
+    },
+    {
+        "id": "772c332a8a2046b0",
+        "type": "switch",
+        "z": "abf616e3a4e3b56b",
+        "name": "pais",
+        "property": "req.query.par1",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "pais",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 190,
+        "y": 780,
+        "wires": [
+            [
+                "6584767320abe6dd"
+            ]
+        ]
+    },
+    {
+        "id": "02bd80e78724eafa",
+        "type": "switch",
+        "z": "abf616e3a4e3b56b",
+        "name": "ciudad",
+        "property": "req.query.par2",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "ciudad",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 270,
+        "y": 900,
+        "wires": [
+            [
+                "272446c8a1fc48fe"
+            ]
+        ]
+    },
+    {
+        "id": "6584767320abe6dd",
+        "type": "change",
+        "z": "abf616e3a4e3b56b",
+        "name": "Ecuador",
+        "rules": [
+            {
+                "t": "set",
+                "p": "pais",
+                "pt": "msg",
+                "to": "Ecuador",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 360,
+        "y": 780,
+        "wires": [
+            [
+                "02bd80e78724eafa"
+            ]
+        ]
+    },
+    {
+        "id": "272446c8a1fc48fe",
+        "type": "change",
+        "z": "abf616e3a4e3b56b",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ciudad",
+                "pt": "msg",
+                "to": "Machala",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 900,
+        "wires": [
+            [
+                "41e73d1bb4353e42",
+                "9864aced4e2cb131"
+            ]
+        ]
+    },
+    {
+        "id": "41e73d1bb4353e42",
+        "type": "debug",
+        "z": "abf616e3a4e3b56b",
+        "name": "Pais y ciudad print",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "9864aced4e2cb131",
+        "type": "change",
+        "z": "abf616e3a4e3b56b",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"pais\":msg.pais, \"ciudad\":msg.ciudad}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 260,
+        "y": 1000,
+        "wires": [
+            [
+                "1f215772234e991c",
+                "50b5f7fa82e1577e"
+            ]
+        ]
+    },
+    {
+        "id": "1f215772234e991c",
+        "type": "debug",
+        "z": "abf616e3a4e3b56b",
+        "name": "Pais y ciudad final",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "50b5f7fa82e1577e",
+        "type": "http response",
+        "z": "abf616e3a4e3b56b",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 260,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "aee0853c1afd5379",
+        "type": "json",
+        "z": "abf616e3a4e3b56b",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 850,
+        "y": 100,
+        "wires": [
+            [
+                "8655cc033a7767fe",
+                "9e93f244c7205206",
+                "d70bf95feed7a307"
+            ]
+        ]
+    },
+    {
+        "id": "8655cc033a7767fe",
+        "type": "debug",
+        "z": "abf616e3a4e3b56b",
+        "name": "Servidor JSON",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1000,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "9e93f244c7205206",
+        "type": "ui_text",
+        "z": "abf616e3a4e3b56b",
+        "group": "4f4fba6d2ec91bb5",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "País:",
+        "format": "{{payload.pais}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1050,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "d70bf95feed7a307",
+        "type": "ui_text",
+        "z": "abf616e3a4e3b56b",
+        "group": "4f4fba6d2ec91bb5",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Ciudad:",
+        "format": "{{payload.ciudad}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1060,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "0350e9cf2df5fb6a",
+        "type": "inject",
+        "z": "abf616e3a4e3b56b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 40,
+        "wires": [
+            [
+                "ca93e1d8f7c21b61"
+            ]
+        ]
+    },
+    {
+        "id": "ca93e1d8f7c21b61",
+        "type": "random",
+        "z": "abf616e3a4e3b56b",
+        "name": "temperatura",
+        "low": 1,
+        "high": 10,
+        "inte": "false",
+        "property": "temp",
+        "x": 370,
+        "y": 40,
+        "wires": [
+            [
+                "5f808fe463316fd2",
+                "9872b7ee130b9a81",
+                "89f99df18da9d130"
+            ]
+        ]
+    },
+    {
+        "id": "5f808fe463316fd2",
+        "type": "debug",
+        "z": "abf616e3a4e3b56b",
+        "name": "debug 32",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "383981fc53cc7bc0",
+        "type": "ui_text_input",
+        "z": "abf616e3a4e3b56b",
+        "name": "",
+        "label": "pais",
+        "tooltip": "",
+        "group": "4f4fba6d2ec91bb5",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 270,
+        "y": 240,
+        "wires": [
+            [
+                "d6f644f1e9c07c71"
+            ]
+        ]
+    },
+    {
+        "id": "d6f644f1e9c07c71",
+        "type": "change",
+        "z": "abf616e3a4e3b56b",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "var1",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 410,
+        "y": 300,
+        "wires": [
+            [
+                "89f99df18da9d130"
+            ]
+        ]
+    },
+    {
+        "id": "2f6fc543c210f384",
+        "type": "debug",
+        "z": "abf616e3a4e3b56b",
+        "name": "fusion",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "89f99df18da9d130",
+        "type": "join",
+        "z": "abf616e3a4e3b56b",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 610,
+        "y": 320,
+        "wires": [
+            [
+                "2f6fc543c210f384"
+            ]
+        ]
+    },
+    {
+        "id": "4f4fba6d2ec91bb5",
+        "type": "ui_group",
+        "name": "graficos http",
+        "tab": "899d099e60f49385",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "899d099e60f49385",
+        "type": "ui_tab",
+        "name": "Http",
+        "icon": "dashboard",
+        "order": 13,
+        "disabled": false,
+        "hidden": false
+    }
+]

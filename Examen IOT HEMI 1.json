@@ -1,0 +1,432 @@
+[
+    {
+        "id": "8b1a68c4da364648",
+        "type": "tab",
+        "label": "Flow 6",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "412ce06b4431b694",
+        "type": "mqtt in",
+        "z": "8b1a68c4da364648",
+        "name": "",
+        "topic": "hemi1/utmach/Json/ ",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "f42a1e4b830cbfe2",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 270,
+        "y": 380,
+        "wires": [
+            [
+                "7ba30476a4c50866",
+                "5c604a99a57946ab",
+                "71c9ed0e218f146e",
+                "41c9b0ae72c568f1"
+            ]
+        ]
+    },
+    {
+        "id": "e3effc682e7c6118",
+        "type": "ui_led",
+        "z": "8b1a68c4da364648",
+        "order": 0,
+        "group": "6527b6b2750005b7",
+        "width": 0,
+        "height": 0,
+        "label": "Foco ",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "",
+        "x": 730,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "5c604a99a57946ab",
+        "type": "change",
+        "z": "8b1a68c4da364648",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.domotic.foco1",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 600,
+        "y": 400,
+        "wires": [
+            [
+                "e3effc682e7c6118"
+            ]
+        ]
+    },
+    {
+        "id": "bcfb27a5fbda5c4e",
+        "type": "mqtt out",
+        "z": "8b1a68c4da364648",
+        "name": "",
+        "topic": "IoT6/hem1/bryan",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fc95b5f4b0c1eb2a",
+        "x": 370,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "8a7f22cdc97720c6",
+        "type": "mqtt in",
+        "z": "8b1a68c4da364648",
+        "name": "",
+        "topic": "IoT6/hem1/bryan",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "fc95b5f4b0c1eb2a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 360,
+        "y": 240,
+        "wires": [
+            [
+                "1007af14a55d9f0b",
+                "ab2fb9098ebe41e0"
+            ]
+        ]
+    },
+    {
+        "id": "ab2fb9098ebe41e0",
+        "type": "ui_led",
+        "z": "8b1a68c4da364648",
+        "order": 3,
+        "group": "36082878a7c3f3d2",
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "0",
+                "valueType": "num"
+            },
+            {
+                "color": "#008000",
+                "value": "1",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "",
+        "x": 590,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "1007af14a55d9f0b",
+        "type": "debug",
+        "z": "8b1a68c4da364648",
+        "name": "debug 28",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "84ed447978be8d71",
+        "type": "ui_switch",
+        "z": "8b1a68c4da364648",
+        "name": "",
+        "label": "foco",
+        "tooltip": "",
+        "group": "36082878a7c3f3d2",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 110,
+        "y": 160,
+        "wires": [
+            [
+                "bcfb27a5fbda5c4e"
+            ]
+        ]
+    },
+    {
+        "id": "7ba30476a4c50866",
+        "type": "debug",
+        "z": "8b1a68c4da364648",
+        "name": "debug 30",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 200,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "2fe5dc44c5fa55a2",
+        "type": "ui_gauge",
+        "z": "8b1a68c4da364648",
+        "name": "",
+        "group": "6527b6b2750005b7",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "temperatura",
+        "label": "C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 10,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 810,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "71c9ed0e218f146e",
+        "type": "change",
+        "z": "8b1a68c4da364648",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.domotic.temperatura",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 580,
+        "y": 500,
+        "wires": [
+            [
+                "2fe5dc44c5fa55a2"
+            ]
+        ]
+    },
+    {
+        "id": "41c9b0ae72c568f1",
+        "type": "change",
+        "z": "8b1a68c4da364648",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.domotic.humedad",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 530,
+        "y": 640,
+        "wires": [
+            [
+                "3e03334b7c7ddeed"
+            ]
+        ]
+    },
+    {
+        "id": "3e03334b7c7ddeed",
+        "type": "ui_gauge",
+        "z": "8b1a68c4da364648",
+        "name": "",
+        "group": "6527b6b2750005b7",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Humedad",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 10,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 820,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "f42a1e4b830cbfe2",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "6527b6b2750005b7",
+        "type": "ui_group",
+        "name": "Foco 2",
+        "tab": "5b8b70fc0cffd3f1",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "fc95b5f4b0c1eb2a",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "36082878a7c3f3d2",
+        "type": "ui_group",
+        "name": "Foco 1",
+        "tab": "5b8b70fc0cffd3f1",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "5b8b70fc0cffd3f1",
+        "type": "ui_tab",
+        "name": "Examen IOT Hemi 1",
+        "icon": "dashboard",
+        "order": 10,
+        "disabled": false,
+        "hidden": false
+    }
+]

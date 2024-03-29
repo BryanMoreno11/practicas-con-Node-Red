@@ -1,0 +1,478 @@
+[
+    {
+        "id": "6f6e3e8f0f30d7c6",
+        "type": "tab",
+        "label": "Estudio Examen 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "26ceda60afe047e4",
+        "type": "ui_button",
+        "z": "6f6e3e8f0f30d7c6",
+        "name": "",
+        "group": "fb98f7c6ddf0aa4f",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "json 1",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{\"FirstName\":\"Fito\",\"Surname\":\"Paez\",\"Phone\":[{\"type\":\"mobile\",\"number\":\"0912345689\"}],\"Email\":[{\"type\":\"office\",\"address\":[\"fito@utmachala.edu.ec\"]},{\"type\":\"home\",\"address\":[\"paez@my-social.com\"]}],\"domotic\":{\"foco1\":true,\"temperatura\":23.5,\"humedad\":88.9}}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 70,
+        "y": 460,
+        "wires": [
+            [
+                "b81539f7c7af9a9d",
+                "ef8c4126e453060b",
+                "4a64cf75e615b18b",
+                "610ab6d7816fa153",
+                "3f791e65b73b05b9"
+            ]
+        ]
+    },
+    {
+        "id": "61061ae981a4536b",
+        "type": "ui_button",
+        "z": "6f6e3e8f0f30d7c6",
+        "name": "",
+        "group": "fb98f7c6ddf0aa4f",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "json 2",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{      \"FirstName\": \"Juana\",      \"Surname\": \"Perez\",      \"Phone\": [          {              \"type\": \"mobile\",              \"number\": \"0894546584\"          }      ],      \"Email\": [          {              \"type\": \"office\",              \"address\": [                  \"juanita@utmachala.edu.ec\"              ]          },          {              \"type\": \"home\",              \"address\": [                  \"perez@my-social.com\"              ]          }      ],      \"domotic\": {          \"foco1\": false,          \"temperatura\": 33.3,          \"humedad\": 68.3      }  }",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 90,
+        "y": 520,
+        "wires": [
+            [
+                "7cc9661ef9820aa0",
+                "ef8c4126e453060b",
+                "4a64cf75e615b18b",
+                "610ab6d7816fa153",
+                "3f791e65b73b05b9"
+            ]
+        ]
+    },
+    {
+        "id": "b81539f7c7af9a9d",
+        "type": "debug",
+        "z": "6f6e3e8f0f30d7c6",
+        "name": "debug 18",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 260,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "7cc9661ef9820aa0",
+        "type": "debug",
+        "z": "6f6e3e8f0f30d7c6",
+        "name": "debug 19",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 260,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "883a8edde0692c98",
+        "type": "ui_gauge",
+        "z": "6f6e3e8f0f30d7c6",
+        "name": "",
+        "group": "fb98f7c6ddf0aa4f",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "temperatura",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 10,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 690,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "74a3207b2620eb01",
+        "type": "ui_gauge",
+        "z": "6f6e3e8f0f30d7c6",
+        "name": "",
+        "group": "fb98f7c6ddf0aa4f",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "humedad",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 10,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 700,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "ef8c4126e453060b",
+        "type": "change",
+        "z": "6f6e3e8f0f30d7c6",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.domotic.temperatura",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 300,
+        "y": 180,
+        "wires": [
+            [
+                "883a8edde0692c98",
+                "2957cde206781099"
+            ]
+        ]
+    },
+    {
+        "id": "4a64cf75e615b18b",
+        "type": "change",
+        "z": "6f6e3e8f0f30d7c6",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.domotic.humedad",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 290,
+        "y": 300,
+        "wires": [
+            [
+                "74a3207b2620eb01"
+            ]
+        ]
+    },
+    {
+        "id": "d7be1a6e3afa4865",
+        "type": "ui_led",
+        "z": "6f6e3e8f0f30d7c6",
+        "order": 4,
+        "group": "fb98f7c6ddf0aa4f",
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "",
+        "x": 530,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "610ab6d7816fa153",
+        "type": "change",
+        "z": "6f6e3e8f0f30d7c6",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.domotic.foco1",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 300,
+        "y": 600,
+        "wires": [
+            [
+                "d7be1a6e3afa4865"
+            ]
+        ]
+    },
+    {
+        "id": "3f791e65b73b05b9",
+        "type": "ui_template",
+        "z": "6f6e3e8f0f30d7c6",
+        "group": "fb98f7c6ddf0aa4f",
+        "name": "",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<table style=\"width:100%\">\n    <tr>\n        <th>Variable</th>\n        <th>Valor</th>\n    </tr>\n    <tr>\n        <td style=\"text-align:center\">Nombres</td>\n        <td style=\"text-align:center\">{{msg.payload.FirstName+\" \"+msg.payload.Surname}}</td>\n    </tr>\n\n    <tr>\n        <td style=\"text-align:center\">Telefono celular:</td>\n        <td style=\"text-align:center\">{{msg.payload.Phone[0].number}}</td>\n    </tr>\n\n    <tr>\n        <td style=\"text-align:center\">Email personal:</td>\n        <td style=\"text-align:center\">{{msg.payload.Email[0].address[0]}}</td>\n    </tr>\n\n    <tr>\n        <td style=\"text-align:center\">Email institucional:</td>\n        <td style=\"text-align:center\">{{msg.payload.Email[1].address[0]}}</td>\n    </tr>\n\n\n\n</table>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 540,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0621e1ed64d2609a",
+        "type": "debug",
+        "z": "6f6e3e8f0f30d7c6",
+        "name": "debug 20",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "2957cde206781099",
+        "type": "switch",
+        "z": "6f6e3e8f0f30d7c6",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "25",
+                "vt": "num"
+            },
+            {
+                "t": "lt",
+                "v": "30",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 630,
+        "y": 160,
+        "wires": [
+            [
+                "64fb21ef80f3f4e8",
+                "fce7ba6da3882b33"
+            ],
+            [
+                "f208a487d04ecb7d"
+            ]
+        ]
+    },
+    {
+        "id": "ee030af6d1538709",
+        "type": "ui_toast",
+        "z": "6f6e3e8f0f30d7c6",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": true,
+        "className": "<button> Ok </button>",
+        "topic": "",
+        "name": "",
+        "x": 930,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "64fb21ef80f3f4e8",
+        "type": "function",
+        "z": "6f6e3e8f0f30d7c6",
+        "name": "function 4",
+        "func": "msg.payload= \"OK\";\nmsg.topic=\"Cuidado\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ea16b8dd3c19322d",
+        "type": "ui_audio",
+        "z": "6f6e3e8f0f30d7c6",
+        "name": "",
+        "group": "fb98f7c6ddf0aa4f",
+        "voice": "Microsoft Raul - Spanish (Mexico)",
+        "always": "",
+        "x": 720,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "fce7ba6da3882b33",
+        "type": "function",
+        "z": "6f6e3e8f0f30d7c6",
+        "name": "function 5",
+        "func": "msg.payload=\"tienes 19 toma verga hija de puta\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 40,
+        "wires": [
+            [
+                "ea16b8dd3c19322d"
+            ]
+        ]
+    },
+    {
+        "id": "f208a487d04ecb7d",
+        "type": "function",
+        "z": "6f6e3e8f0f30d7c6",
+        "name": "function 6",
+        "func": "msg.payload=\"la temperatura es menor a 30\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 800,
+        "y": 240,
+        "wires": [
+            [
+                "c806c3ac41a2e4f6"
+            ]
+        ]
+    },
+    {
+        "id": "c806c3ac41a2e4f6",
+        "type": "ui_toast",
+        "z": "6f6e3e8f0f30d7c6",
+        "position": "bottom left",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 950,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "fb98f7c6ddf0aa4f",
+        "type": "ui_group",
+        "name": "Practica 1 ",
+        "tab": "cce615ef6192c33a",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "cce615ef6192c33a",
+        "type": "ui_tab",
+        "name": "Examen estudio",
+        "icon": "dashboard",
+        "order": 8,
+        "disabled": false,
+        "hidden": false
+    }
+]

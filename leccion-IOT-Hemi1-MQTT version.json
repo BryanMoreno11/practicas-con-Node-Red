@@ -1,0 +1,466 @@
+[
+    {
+        "id": "bfb46923ae9b719b",
+        "type": "tab",
+        "label": "mqtt",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "38294fa7d1db1f10",
+        "type": "random",
+        "z": "bfb46923ae9b719b",
+        "name": "",
+        "low": 1,
+        "high": 10,
+        "inte": "false",
+        "property": "payload",
+        "x": 160,
+        "y": 440,
+        "wires": [
+            [
+                "2a4b77c91ced1c1b",
+                "05b68b8291101894"
+            ]
+        ]
+    },
+    {
+        "id": "2a4b77c91ced1c1b",
+        "type": "function",
+        "z": "bfb46923ae9b719b",
+        "name": "humedad",
+        "func": "msg.payload=(msg.payload*10).toFixed(2);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 520,
+        "wires": [
+            [
+                "d7f3019e3a682749"
+            ]
+        ]
+    },
+    {
+        "id": "05b68b8291101894",
+        "type": "function",
+        "z": "bfb46923ae9b719b",
+        "name": "temperatura",
+        "func": "msg.payload=(msg.payload*8).toFixed(2);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 600,
+        "wires": [
+            [
+                "a1bd760dd6e83556"
+            ]
+        ]
+    },
+    {
+        "id": "a1bd760dd6e83556",
+        "type": "mqtt out",
+        "z": "bfb46923ae9b719b",
+        "name": "",
+        "topic": "examen/bryan/temperatura",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fc95b5f4b0c1eb2a",
+        "x": 640,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "d7f3019e3a682749",
+        "type": "mqtt out",
+        "z": "bfb46923ae9b719b",
+        "name": "",
+        "topic": "examen/bryan/humedad",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fc95b5f4b0c1eb2a",
+        "x": 630,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "0b75b17ac50c65c0",
+        "type": "inject",
+        "z": "bfb46923ae9b719b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 600,
+        "wires": [
+            [
+                "38294fa7d1db1f10"
+            ]
+        ]
+    },
+    {
+        "id": "8675a64c8f319877",
+        "type": "mqtt in",
+        "z": "bfb46923ae9b719b",
+        "name": "",
+        "topic": "examen/bryan/humedad",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "fc95b5f4b0c1eb2a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 720,
+        "wires": [
+            [
+                "f9d4f163e0f11515",
+                "8d35933d7bcec8de",
+                "aabee04528a71e9b"
+            ]
+        ]
+    },
+    {
+        "id": "2585e95e3b8a81f2",
+        "type": "mqtt in",
+        "z": "bfb46923ae9b719b",
+        "name": "",
+        "topic": "examen/bryan/temperatura",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "fc95b5f4b0c1eb2a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 820,
+        "wires": [
+            [
+                "8991b7a5d3640c6b",
+                "386c0983971c5206"
+            ]
+        ]
+    },
+    {
+        "id": "f9d4f163e0f11515",
+        "type": "ui_gauge",
+        "z": "bfb46923ae9b719b",
+        "name": "",
+        "group": "bce09eb972ffd5ec",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "humedad",
+        "label": "%",
+        "format": "{{value | number:2}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#00b500",
+            "#006eff"
+        ],
+        "seg1": "80",
+        "seg2": "80",
+        "diff": false,
+        "className": "",
+        "x": 480,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "8991b7a5d3640c6b",
+        "type": "ui_gauge",
+        "z": "bfb46923ae9b719b",
+        "name": "",
+        "group": "bce09eb972ffd5ec",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "temperatura",
+        "label": "C",
+        "format": "{{value | number:2}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#e6e600",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "50",
+        "seg2": "50",
+        "diff": false,
+        "className": "",
+        "x": 470,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "aabee04528a71e9b",
+        "type": "switch",
+        "z": "bfb46923ae9b719b",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "75",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 410,
+        "y": 880,
+        "wires": [
+            [
+                "4f95369a554fe8e8"
+            ]
+        ]
+    },
+    {
+        "id": "104e569faf55246b",
+        "type": "ui_toast",
+        "z": "bfb46923ae9b719b",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 710,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "4f95369a554fe8e8",
+        "type": "function",
+        "z": "bfb46923ae9b719b",
+        "name": "texto",
+        "func": "msg.topic=\"humedad alta\";\nmsg.payload=\"La humedad es de \"+msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2e1962f767b42b6e",
+        "type": "ui_template",
+        "z": "bfb46923ae9b719b",
+        "group": "bce09eb972ffd5ec",
+        "name": "",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "format": "<table style=\"width:100%\">\n  <tr>\n    <th>Variable</th> \n    <th>Valor</th>\n  </tr>\n  <tr>\n    <td style=\"text-align:center\">Temperatura</td>\n    <td style=\"text-align:center\">{{msg.payload.temperatura}}</td> \n  </tr>\n \n  <tr>\n    <td style=\"text-align:center\">Humedad:</td>\n    <td style=\"text-align:center\">{{msg.payload.humedad}}</td> \n  </tr>\n\n</table>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 720,
+        "y": 1100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b2a0b5867d7e4bf6",
+        "type": "join",
+        "z": "bfb46923ae9b719b",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 550,
+        "y": 1100,
+        "wires": [
+            [
+                "2e1962f767b42b6e",
+                "33bdc15d62529898"
+            ]
+        ]
+    },
+    {
+        "id": "386c0983971c5206",
+        "type": "change",
+        "z": "bfb46923ae9b719b",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "temperatura",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 410,
+        "y": 1000,
+        "wires": [
+            [
+                "b2a0b5867d7e4bf6"
+            ]
+        ]
+    },
+    {
+        "id": "8d35933d7bcec8de",
+        "type": "change",
+        "z": "bfb46923ae9b719b",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "humedad",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 210,
+        "y": 1100,
+        "wires": [
+            [
+                "b2a0b5867d7e4bf6"
+            ]
+        ]
+    },
+    {
+        "id": "33bdc15d62529898",
+        "type": "debug",
+        "z": "bfb46923ae9b719b",
+        "name": "debug 15",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "fc95b5f4b0c1eb2a",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "bce09eb972ffd5ec",
+        "type": "ui_group",
+        "name": "mqtt",
+        "tab": "cd11f1b7ef63bb7f",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "cd11f1b7ef63bb7f",
+        "type": "ui_tab",
+        "name": "Examen",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

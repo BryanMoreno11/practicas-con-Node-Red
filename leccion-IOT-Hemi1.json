@@ -1,0 +1,254 @@
+[
+    {
+        "id": "fe737c94d3f2641e",
+        "type": "tab",
+        "label": "leccion",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a2c9d45311c79ffe",
+        "type": "random",
+        "z": "fe737c94d3f2641e",
+        "name": "",
+        "low": 1,
+        "high": 10,
+        "inte": "false",
+        "property": "payload",
+        "x": 220,
+        "y": 140,
+        "wires": [
+            [
+                "825ed738d763e81d",
+                "510d72410a4f4035"
+            ]
+        ]
+    },
+    {
+        "id": "808922abc704a6c9",
+        "type": "inject",
+        "z": "fe737c94d3f2641e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 60,
+        "wires": [
+            [
+                "a2c9d45311c79ffe"
+            ]
+        ]
+    },
+    {
+        "id": "44ddb8c567b6b9ea",
+        "type": "ui_gauge",
+        "z": "fe737c94d3f2641e",
+        "name": "",
+        "group": "0ef95c3adeca9371",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "temperatura",
+        "label": "C",
+        "format": "{{value |number:2}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#fbff00",
+            "#eeff00",
+            "#ca3838"
+        ],
+        "seg1": "50",
+        "seg2": "50",
+        "diff": false,
+        "className": "",
+        "x": 490,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "825ed738d763e81d",
+        "type": "function",
+        "z": "fe737c94d3f2641e",
+        "name": "temperatura",
+        "func": "msg.payload= msg.payload*8;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 220,
+        "wires": [
+            [
+                "44ddb8c567b6b9ea"
+            ]
+        ]
+    },
+    {
+        "id": "510d72410a4f4035",
+        "type": "function",
+        "z": "fe737c94d3f2641e",
+        "name": "humedad",
+        "func": "msg.payload= msg.payload*10;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 340,
+        "wires": [
+            [
+                "6b70a8c94aee9c80",
+                "d36aada59cb29dc9"
+            ]
+        ]
+    },
+    {
+        "id": "6b70a8c94aee9c80",
+        "type": "ui_gauge",
+        "z": "fe737c94d3f2641e",
+        "name": "",
+        "group": "0ef95c3adeca9371",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "humedad",
+        "label": "%",
+        "format": "{{value| number:2}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00ff00",
+            "#2bff00",
+            "#0033ff"
+        ],
+        "seg1": "80",
+        "seg2": "80",
+        "diff": false,
+        "className": "",
+        "x": 560,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "d36aada59cb29dc9",
+        "type": "switch",
+        "z": "fe737c94d3f2641e",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "75",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 210,
+        "y": 420,
+        "wires": [
+            [
+                "3c32846e16bada7d",
+                "6fcc315bda6f2a5c"
+            ]
+        ]
+    },
+    {
+        "id": "83b2c7c7c802be0c",
+        "type": "ui_toast",
+        "z": "fe737c94d3f2641e",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": true,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 570,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "3c32846e16bada7d",
+        "type": "debug",
+        "z": "fe737c94d3f2641e",
+        "name": "debug 10",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 300,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "6fcc315bda6f2a5c",
+        "type": "function",
+        "z": "fe737c94d3f2641e",
+        "name": "convertir a texto",
+        "func": "msg.topic=\"humedad alta\"\nmsg.payload= \"La humedad es de \"+msg.payload.toFixed(2)+\"%\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 480,
+        "wires": [
+            [
+                "83b2c7c7c802be0c"
+            ]
+        ]
+    },
+    {
+        "id": "0ef95c3adeca9371",
+        "type": "ui_group",
+        "name": "leccion",
+        "tab": "cd11f1b7ef63bb7f",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "cd11f1b7ef63bb7f",
+        "type": "ui_tab",
+        "name": "Examen",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

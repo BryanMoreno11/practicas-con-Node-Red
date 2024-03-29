@@ -1,0 +1,190 @@
+[
+    {
+        "id": "c6fe27ad36f56fb3",
+        "type": "tab",
+        "label": "HTTP WEATHER",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d113e466d4f92a27",
+        "type": "http request",
+        "z": "c6fe27ad36f56fb3",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://api.openweathermap.org/data/2.5/weather?q={{{ciudad}}}&appid=e8aa581fc27def9a420d1cf3f5e75dd3",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 410,
+        "y": 120,
+        "wires": [
+            [
+                "b6f5ee714489de07",
+                "2549d56ca9284191",
+                "77262b5ec628359b",
+                "d4ac7da21212db14"
+            ]
+        ]
+    },
+    {
+        "id": "b6f5ee714489de07",
+        "type": "debug",
+        "z": "c6fe27ad36f56fb3",
+        "name": "debug 33",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 140,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "c8ce1148146052ef",
+        "type": "ui_text_input",
+        "z": "c6fe27ad36f56fb3",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "group": "75bb514bc7fbeb82",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": false,
+        "className": "",
+        "topicType": "msg",
+        "x": 120,
+        "y": 380,
+        "wires": [
+            [
+                "b03e82d8e515cfd6"
+            ]
+        ]
+    },
+    {
+        "id": "b03e82d8e515cfd6",
+        "type": "change",
+        "z": "c6fe27ad36f56fb3",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "ciudad",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 380,
+        "wires": [
+            [
+                "d113e466d4f92a27"
+            ]
+        ]
+    },
+    {
+        "id": "2549d56ca9284191",
+        "type": "ui_text",
+        "z": "c6fe27ad36f56fb3",
+        "group": "75bb514bc7fbeb82",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Latitud",
+        "format": "{{payload.coord.lat}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 610,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "77262b5ec628359b",
+        "type": "ui_text",
+        "z": "c6fe27ad36f56fb3",
+        "group": "75bb514bc7fbeb82",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Longitud",
+        "format": "{{payload.coord.lon}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 600,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "d4ac7da21212db14",
+        "type": "ui_template",
+        "z": "c6fe27ad36f56fb3",
+        "group": "75bb514bc7fbeb82",
+        "name": "",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "format": "<table style=\"width:100%\">\n  <tr>\n    <th>Variable</th> \n    <th>Valor</th>\n  </tr>\n  <tr>\n    <td style=\"text-align:center\">Latitud:</td>\n    <td style=\"text-align:center\">{{msg.payload.coord.lat}}</td> \n  </tr>\n \n  <tr>\n    <td style=\"text-align:center\">Longitud:</td>\n    <td style=\"text-align:center\">{{msg.payload.coord.lon}}</td> \n  </tr>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 620,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "75bb514bc7fbeb82",
+        "type": "ui_group",
+        "name": "OpenWeather",
+        "tab": "7e4e67360fb5bd1c",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "7e4e67360fb5bd1c",
+        "type": "ui_tab",
+        "name": "HTTP Weather",
+        "icon": "dashboard",
+        "order": 14,
+        "disabled": false,
+        "hidden": false
+    }
+]

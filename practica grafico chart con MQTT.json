@@ -1,0 +1,339 @@
+[
+    {
+        "id": "0461581cb5228f6a",
+        "type": "tab",
+        "label": "chart mqtt",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6cae724ae22e87a9",
+        "type": "inject",
+        "z": "0461581cb5228f6a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 100,
+        "wires": [
+            [
+                "ce8f0477f6208f27"
+            ]
+        ]
+    },
+    {
+        "id": "93f5dfbbd594be0f",
+        "type": "mqtt out",
+        "z": "0461581cb5228f6a",
+        "name": "",
+        "topic": "chart/temperatura",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fc95b5f4b0c1eb2a",
+        "x": 610,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "ce8f0477f6208f27",
+        "type": "random",
+        "z": "0461581cb5228f6a",
+        "name": "",
+        "low": 1,
+        "high": 10,
+        "inte": "false",
+        "property": "payload",
+        "x": 200,
+        "y": 220,
+        "wires": [
+            [
+                "14df87661684c12d",
+                "f3803240f0181740"
+            ]
+        ]
+    },
+    {
+        "id": "728acdacaf043442",
+        "type": "mqtt in",
+        "z": "0461581cb5228f6a",
+        "name": "",
+        "topic": "chart/temperatura",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "fc95b5f4b0c1eb2a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 480,
+        "wires": [
+            [
+                "269970f7fc632edd"
+            ]
+        ]
+    },
+    {
+        "id": "1b09b32e45edef82",
+        "type": "debug",
+        "z": "0461581cb5228f6a",
+        "name": "debug 17",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "14df87661684c12d",
+        "type": "function",
+        "z": "0461581cb5228f6a",
+        "name": "temperatura",
+        "func": "msg.payload= (msg.payload*8).toFixed(2)\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 240,
+        "wires": [
+            [
+                "93f5dfbbd594be0f"
+            ]
+        ]
+    },
+    {
+        "id": "b0d2cbe55137e6eb",
+        "type": "ui_chart",
+        "z": "0461581cb5228f6a",
+        "name": "",
+        "group": "c5b3e605226b22f7",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "chart",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 150,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "269970f7fc632edd",
+        "type": "change",
+        "z": "0461581cb5228f6a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "temperatura",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 90,
+        "y": 600,
+        "wires": [
+            [
+                "b0d2cbe55137e6eb"
+            ]
+        ]
+    },
+    {
+        "id": "f3803240f0181740",
+        "type": "function",
+        "z": "0461581cb5228f6a",
+        "name": "humedad",
+        "func": "msg.payload= (msg.payload*10).toFixed(2);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 360,
+        "wires": [
+            [
+                "925e3c60f6439bb5"
+            ]
+        ]
+    },
+    {
+        "id": "925e3c60f6439bb5",
+        "type": "mqtt out",
+        "z": "0461581cb5228f6a",
+        "name": "",
+        "topic": "chart/humedad",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fc95b5f4b0c1eb2a",
+        "x": 600,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "e8f2acb4ad431273",
+        "type": "mqtt in",
+        "z": "0461581cb5228f6a",
+        "name": "",
+        "topic": "chart/humedad",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "fc95b5f4b0c1eb2a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 400,
+        "y": 480,
+        "wires": [
+            [
+                "7c5db1a38a45d27c"
+            ]
+        ]
+    },
+    {
+        "id": "7c5db1a38a45d27c",
+        "type": "change",
+        "z": "0461581cb5228f6a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "humedad",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 370,
+        "y": 560,
+        "wires": [
+            [
+                "b0d2cbe55137e6eb"
+            ]
+        ]
+    },
+    {
+        "id": "fc95b5f4b0c1eb2a",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "c5b3e605226b22f7",
+        "type": "ui_group",
+        "name": "chart mqtt",
+        "tab": "cd11f1b7ef63bb7f",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "cd11f1b7ef63bb7f",
+        "type": "ui_tab",
+        "name": "Examen",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

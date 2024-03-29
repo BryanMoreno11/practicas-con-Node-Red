@@ -1,0 +1,248 @@
+[
+    {
+        "id": "413b98b0deebc897",
+        "type": "tab",
+        "label": "Flow 7",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "fd956458a164718d",
+        "type": "inject",
+        "z": "413b98b0deebc897",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dbcfea2f44e53ca5",
+        "type": "http in",
+        "z": "413b98b0deebc897",
+        "name": "",
+        "url": "",
+        "method": "get",
+        "upload": false,
+        "x": 110,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b00f8a1bb1716111",
+        "type": "http request",
+        "z": "413b98b0deebc897",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://api.openweathermap.org/data/2.5/weather?q=Machala&appid=65624ab8a29145622ea057ce0803aad0",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 410,
+        "y": 300,
+        "wires": [
+            [
+                "3bdbb4d9ccf35902"
+            ]
+        ]
+    },
+    {
+        "id": "691e3e35432299df",
+        "type": "debug",
+        "z": "413b98b0deebc897",
+        "name": "debug 15",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 420,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "5ad6919ba9ae72ea",
+        "type": "ui_gauge",
+        "z": "413b98b0deebc897",
+        "name": "",
+        "group": "71dcbe2cea675173",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Humedad Weather",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 10,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 190,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "94d54894fcf0c509",
+        "type": "change",
+        "z": "413b98b0deebc897",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.humidity",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 220,
+        "y": 680,
+        "wires": [
+            [
+                "5ad6919ba9ae72ea",
+                "d13d18336b16acb7"
+            ]
+        ]
+    },
+    {
+        "id": "d13d18336b16acb7",
+        "type": "debug",
+        "z": "413b98b0deebc897",
+        "name": "debug 16",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 180,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "3bdbb4d9ccf35902",
+        "type": "debug",
+        "z": "413b98b0deebc897",
+        "name": "debug 17",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "495c3d26d63b97c8",
+        "type": "inject",
+        "z": "413b98b0deebc897",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 300,
+        "y": 380,
+        "wires": [
+            [
+                "b00f8a1bb1716111"
+            ]
+        ]
+    },
+    {
+        "id": "5746e246dd530d42",
+        "type": "openweathermap in",
+        "z": "413b98b0deebc897",
+        "name": "",
+        "wtype": "current",
+        "lon": "",
+        "lat": "",
+        "city": "Machala",
+        "country": "Ecuador",
+        "language": "es",
+        "x": 160,
+        "y": 600,
+        "wires": [
+            [
+                "691e3e35432299df",
+                "94d54894fcf0c509"
+            ]
+        ]
+    },
+    {
+        "id": "71dcbe2cea675173",
+        "type": "ui_group",
+        "name": "Weather Http",
+        "tab": "ca0fd76f89b180ce",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "ca0fd76f89b180ce",
+        "type": "ui_tab",
+        "name": "Weather Report",
+        "icon": "dashboard",
+        "order": 4,
+        "disabled": false,
+        "hidden": false
+    }
+]
